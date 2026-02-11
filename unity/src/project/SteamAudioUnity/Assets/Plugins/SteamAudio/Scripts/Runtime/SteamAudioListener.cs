@@ -264,7 +264,7 @@ namespace SteamAudio
             AssetDatabase.StopAssetEditing();
 #endif
 
-            Baker.BeginBake(tasks);
+            Baker.BeginBake(tasks, true);
         }
 
         void CacheIdentifier()

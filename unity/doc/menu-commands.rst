@@ -42,3 +42,15 @@ Steam Audio Reverb Data Point > Bake All
 
 Steam Audio Reverb Data Point > Clear Unreferenced Data
     Deletes any Steam Audio Reverb Data assets no longer referenced in the project.
+
+Steam Audio Baked Source > Bake All Static Source Reflections In Current Scene
+    Bakes static source reflections for every :doc:`Steam Audio Baked Source <baked-source>` in the currently open and active scene.
+
+Steam Audio Baked Listener > Bake All Static Listener Reflections In Current Scene
+    Bakes static listener reflections for every :doc:`Steam Audio Baked Listener <baked-listener>` in the currently open and active scene.
+
+Steam Audio Listener > Bake All Reverb In Current Scene
+    Bakes reverb for every :doc:`Steam Audio Listener <listener>` in the currently open and active scene.
+
+Steam Audio Probe Batch > Bake All Pathing In Current Scene
+    Bakes pathing for every :doc:`Steam Audio Probe Batch <probe-batch>` in the currently open and active scene.

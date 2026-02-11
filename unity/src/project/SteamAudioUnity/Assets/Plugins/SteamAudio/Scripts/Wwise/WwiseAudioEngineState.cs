@@ -65,9 +65,11 @@ namespace SteamAudio
 
         public override AudioSettings GetAudioSettings()
         {
-            return new AudioSettings { 
-                samplingRate = (int) AkWwiseInitializationSettings.Instance.UserSettings.m_SampleRate,
-                frameSize = (int) AkWwiseInitializationSettings.Instance.UserSettings.m_SamplesPerFrame
+            var platformSettings = AkWwiseInitializationSettings.ActivePlatformSettings;
+            return new AudioSettings
+            {
+                samplingRate = (int)platformSettings.AkInitializationSettings.platformSettings.uSampleRate,
+                frameSize = (int)platformSettings.AkInitializationSettings.initSettings.uNumSamplesPerFrame
             };
         }
     }
