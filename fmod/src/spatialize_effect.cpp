@@ -1112,7 +1112,7 @@ FMOD_RESULT F_CALL process(FMOD_DSP_STATE* state,
             memset(effect->outBuffer.data[i], 0, effect->outBuffer.numSamples * sizeof(float));
         }
 
-        if (effect->shouldProcessTail && !tailStartedDirect)
+        if (effect->shouldProcessTail)
         {
             if (effect->directState == IPL_AUDIOEFFECTSTATE_TAILREMAINING)
             {
