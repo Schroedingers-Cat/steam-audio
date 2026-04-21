@@ -278,6 +278,13 @@
                     ]
                 },
                 {
+                    "platforms": ["windows-x86", "windows-x64"],
+                    "flags": [
+                        "-DCMAKE_POLICY_DEFAULT_CMP0091=NEW",
+                        "-DCMAKE_C_FLAGS=/MT"
+                    ]
+                },
+                {
                     "stamp": false,
                     "flags": [
                         "-DZLIB_ROOT=$deps/zlib/lib/$platform/$config",
