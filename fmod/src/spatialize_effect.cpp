@@ -954,7 +954,8 @@ IPLDirectEffectParams getDirectParams(FMOD_DSP_STATE* state,
     }
     else
     {
-        params.flags = static_cast<IPLDirectEffectFlags>(params.flags | IPL_DIRECTEFFECTFLAGS_APPLYOCCLUSION);
+        if (effect->applyOcclusion == PARAMETER_USERDEFINED || hasSource)
+            params.flags = static_cast<IPLDirectEffectFlags>(params.flags | IPL_DIRECTEFFECTFLAGS_APPLYOCCLUSION);
 
         if (effect->applyOcclusion == PARAMETER_USERDEFINED)
         {
@@ -962,8 +963,9 @@ IPLDirectEffectParams getDirectParams(FMOD_DSP_STATE* state,
         }
         else
         {
-            if (updatingOverallGain && !hasSource)
+            if (!hasSource)
             {
+                // No simulation source (e.g. in the FMOD Studio editor preview) should fall back to fully unoccluded
                 params.occlusion = 1.0f;
             }
         }
