@@ -189,6 +189,7 @@ struct State
     IPLAudioEffectState ambisonicsState;
     bool hasTail;
     bool shouldProcessTail;
+    bool previouslyIdle;
 };
 
 enum InitFlags
@@ -1032,6 +1033,9 @@ FMOD_RESULT F_CALL process(FMOD_DSP_STATE* state,
 
     if (operation == FMOD_DSP_PROCESS_QUERY)
     {
+        if (!inBuffers)
+            effect->previouslyIdle = true;
+
         if (!initFmodOutBufferFormat(inBuffers, outBuffers, state, effect->outputFormat))
             return FMOD_ERR_DSP_DONTPROCESS;
 
@@ -1167,7 +1171,8 @@ FMOD_RESULT F_CALL process(FMOD_DSP_STATE* state,
                 IPLPanningEffectParams panningParams{};
                 panningParams.direction = direction;
 
-                effect->panningState = iplPanningEffectApply(effect->panningEffect, &panningParams, &effect->monoBuffer, &effect->outBuffer);
+                effect->panningState = iplPanningEffectApply(effect->panningEffect, &panningParams, &effect->monoBuffer, &effect->outBuffer, !effect->previouslyIdle);
+                effect->previouslyIdle = false;
             }
 
             if (effect->panningState == IPL_AUDIOEFFECTSTATE_TAILREMAINING)

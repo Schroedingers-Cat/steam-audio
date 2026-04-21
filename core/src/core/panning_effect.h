@@ -44,7 +44,8 @@ public:
 
     AudioEffectState apply(const PanningEffectParams& params,
                            const AudioBuffer& in,
-                           AudioBuffer& out);
+                           AudioBuffer& out,
+                           bool crossfadeCoefficients);
 
     AudioEffectState tail(AudioBuffer& out);
 

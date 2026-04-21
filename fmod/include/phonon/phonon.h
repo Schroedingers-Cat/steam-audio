@@ -1520,10 +1520,11 @@ IPLAPI void IPLCALL iplPanningEffectReset(IPLPanningEffect effect);
     \param  out     The output audio buffer. Must have as many channels as needed for the speaker layout
                     specified when creating the panning effect. For example, if the speaker layout is
                     \c IPL_SPEAKERLAYOUTTYPE_SURROUND_5_1, the output buffer must contain 6 channels.
+    \param crossfadeCoefficients Set to true if you want to smoothly blend the panning from the previous direction to the current direction or false if you want to apply the new direction instantly.
 
     \return \c IPL_AUDIOEFFECTSTATE_TAILCOMPLETE to indicate that this effect does not generate any tail samples.
 */
-IPLAPI IPLAudioEffectState IPLCALL iplPanningEffectApply(IPLPanningEffect effect, IPLPanningEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out);
+IPLAPI IPLAudioEffectState IPLCALL iplPanningEffectApply(IPLPanningEffect effect, IPLPanningEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out, bool crossfadeCoefficients);
 
 /** Returns the number of tail samples remaining in a panning effect's internal buffers.
 

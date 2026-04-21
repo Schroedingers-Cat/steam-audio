@@ -1618,13 +1618,13 @@ public:
         : CPanningEffect(context, audioSettings, effectSettings)
     {}
 
-    virtual IPLAudioEffectState apply(IPLPanningEffectParams* params, IPLAudioBuffer* in, IPLAudioBuffer* out) override
+    virtual IPLAudioEffectState apply(IPLPanningEffectParams* params, IPLAudioBuffer* in,           IPLAudioBuffer* out, bool crossfadeCoefficients) override
     {
         VALIDATE_IPLPanningEffectParams(params);
         VALIDATE_IPLAudioBuffer(in, true);
         VALIDATE_IPLAudioBuffer(out, false);
 
-        auto result = CPanningEffect::apply(params, in, out);
+        auto result = CPanningEffect::apply(params, in, out, crossfadeCoefficients);
 
         VALIDATE_IPLAudioEffectState(result);
         VALIDATE_IPLAudioBuffer(out, true);

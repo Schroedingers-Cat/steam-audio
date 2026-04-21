@@ -49,7 +49,8 @@ public:
 
     virtual IPLAudioEffectState apply(IPLPanningEffectParams* params,
                                       IPLAudioBuffer* in,
-                                      IPLAudioBuffer* out) override;
+                                      IPLAudioBuffer* out,
+                                      bool crossfadeCoefficients) override;
 
     virtual IPLint32 getTailSize() override;
 

@@ -55,7 +55,7 @@ ITEST(panningeffect)
         PanningEffectParams params{};
         params.direction = &direction;
 
-        effect.apply(params, inBuffer, outBuffer);
+        effect.apply(params, inBuffer, outBuffer, true);
     };
 
     auto processTail = [&](AudioBuffer& outBuffer)
