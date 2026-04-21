@@ -948,28 +948,23 @@ IPLDirectEffectParams getDirectParams(FMOD_DSP_STATE* state,
         }
     }
 
-    if (effect->applyOcclusion == PARAMETER_DISABLE)
-    {
-        params.occlusion = 1.0f;
-    }
-    else
-    {
-        if (effect->applyOcclusion == PARAMETER_USERDEFINED || hasSource)
-            params.flags = static_cast<IPLDirectEffectFlags>(params.flags | IPL_DIRECTEFFECTFLAGS_APPLYOCCLUSION);
-
-        if (effect->applyOcclusion == PARAMETER_USERDEFINED)
-        {
-            params.occlusion = effect->occlusion;
-        }
-        else
-        {
-            if (!hasSource)
-            {
-                // No simulation source (e.g. in the FMOD Studio editor preview) should fall back to fully unoccluded
-                params.occlusion = 1.0f;
-            }
-        }
-    }
+	switch (effect->applyOcclusion)
+	{
+	case PARAMETER_DISABLE:
+		params.occlusion = 1.0f;
+		break;
+	case PARAMETER_SIMULATIONDEFINED:
+		if (hasSource)
+			params.flags = static_cast<IPLDirectEffectFlags>(params.flags | IPL_DIRECTEFFECTFLAGS_APPLYOCCLUSION);
+		else
+			// No simulation source (e.g. in the FMOD Studio editor preview) should fall back to fully unoccluded
+			params.occlusion = 1.0f;
+		break;
+	case PARAMETER_USERDEFINED:
+		params.flags = static_cast<IPLDirectEffectFlags>(params.flags | IPL_DIRECTEFFECTFLAGS_APPLYOCCLUSION);
+		params.occlusion = effect->occlusion;
+		break;
+	}
 
     if (effect->applyTransmission == PARAMETER_DISABLE)
     {
