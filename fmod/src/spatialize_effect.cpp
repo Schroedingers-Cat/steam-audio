@@ -1172,6 +1172,7 @@ FMOD_RESULT F_CALL process(FMOD_DSP_STATE* state,
                 IPLPanningEffectParams panningParams{};
                 panningParams.direction = direction;
 
+                iplPanningEffectSetSmoothed(effect->panningEffect, !effect->previouslyIdle);
                 effect->panningState = iplPanningEffectApply(effect->panningEffect, &panningParams, &effect->monoBuffer, &effect->outBuffer);
                 effect->previouslyIdle = false;
             }

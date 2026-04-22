@@ -55,6 +55,8 @@ public:
                                int index,
                                const PanningData* panningData = nullptr);
 
+    void setSmoothedPanning(const bool crossfadeCoefficients) { mCrossfadeCoefficients = crossfadeCoefficients; }
+
 private:
     SpeakerLayout mSpeakerLayout;
     Vector3f mPrevDirection;
