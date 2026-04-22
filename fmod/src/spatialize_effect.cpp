@@ -472,6 +472,7 @@ void reset(FMOD_DSP_STATE* state)
     effect->ambisonicsState = IPL_AUDIOEFFECTSTATE_TAILCOMPLETE;
     effect->hasTail = false;
     effect->shouldProcessTail = false;
+    effect->previouslyIdle = true;
 }
 
 FMOD_RESULT F_CALL create(FMOD_DSP_STATE* state)
