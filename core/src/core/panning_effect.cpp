@@ -38,12 +38,12 @@ PanningEffect::PanningEffect(const PanningEffectSettings& settings)
 void PanningEffect::reset()
 {
     mPrevDirection = Vector3f::kZero;
+    mCrossfadeCoefficients = true;
 }
 
 AudioEffectState PanningEffect::apply(const PanningEffectParams& params,
                                       const AudioBuffer& in,
-                                      AudioBuffer& out,
-                                      const bool crossfadeCoefficients)
+                                      AudioBuffer& out)
 {
     assert(in.numSamples() == out.numSamples());
     assert(in.numChannels() == 1);
@@ -51,7 +51,7 @@ AudioEffectState PanningEffect::apply(const PanningEffectParams& params,
     assert(params.direction != nullptr);
 
     const Vector3f& direction = *params.direction;
-    if (!crossfadeCoefficients)
+    if (!mCrossfadeCoefficients)
         mPrevDirection = direction;
 
     PanningData panningData{};

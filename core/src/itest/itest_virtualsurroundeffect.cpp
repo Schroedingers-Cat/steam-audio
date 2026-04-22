@@ -67,7 +67,7 @@ ITEST(virtualsurround)
         PanningEffectParams panningParams{};
         panningParams.direction = &direction;
 
-        panningEffect.apply(panningParams, mono, surround, true);
+        panningEffect.apply(panningParams, mono, surround);
 
         VirtualSurroundEffectParams virtualSurroundParams{};
         virtualSurroundParams.hrtf = &hrtf;

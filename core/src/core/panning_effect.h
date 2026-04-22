@@ -44,8 +44,7 @@ public:
 
     AudioEffectState apply(const PanningEffectParams& params,
                            const AudioBuffer& in,
-                           AudioBuffer& out,
-                           bool crossfadeCoefficients);
+                           AudioBuffer& out);
 
     AudioEffectState tail(AudioBuffer& out);
 
@@ -59,6 +58,7 @@ public:
 private:
     SpeakerLayout mSpeakerLayout;
     Vector3f mPrevDirection;
+    bool mCrossfadeCoefficients;
 
     static float stereoPanningWeight(const Vector3f& direction,
                                      int index);

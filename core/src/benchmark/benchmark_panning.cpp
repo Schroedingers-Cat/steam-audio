@@ -58,7 +58,7 @@ void BenchmarkPanningForSpeakerLayout(IPLSpeakerLayoutType channelLayout, int nu
     for (auto i = 0; i < kNumRuns; ++i)
     {
         IPLPanningEffectParams params{ direction };
-        iplPanningEffectApply(effect, &params, &inBuffer, &outBuffer, true);
+        iplPanningEffectApply(effect, &params, &inBuffer, &outBuffer);
     }
 
     timePerRun = timer.elapsedSeconds() / kNumRuns;

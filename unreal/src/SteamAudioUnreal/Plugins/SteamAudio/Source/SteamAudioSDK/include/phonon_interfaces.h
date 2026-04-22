@@ -352,8 +352,7 @@ public:
 
     virtual IPLAudioEffectState apply(IPLPanningEffectParams* params,
                                       IPLAudioBuffer* in,
-                                      IPLAudioBuffer* out,
-                                      bool crossfadeCoefficients) = 0;
+                                      IPLAudioBuffer* out) = 0;
 
     virtual IPLint32 getTailSize() = 0;
 
@@ -1306,13 +1305,12 @@ void IPLCALL iplPanningEffectReset(IPLPanningEffect effect)
 IPLAudioEffectState IPLCALL iplPanningEffectApply(IPLPanningEffect effect,
                                         IPLPanningEffectParams* params,
                                         IPLAudioBuffer* in,
-                                        IPLAudioBuffer* out,
-                                        bool crossfadeCoefficients)
+                                        IPLAudioBuffer* out)
 {
     if (!effect)
         return IPL_AUDIOEFFECTSTATE_TAILCOMPLETE;
 
-    return reinterpret_cast<api::IPanningEffect*>(effect)->apply(params, in, out, crossfadeCoefficients);
+    return reinterpret_cast<api::IPanningEffect*>(effect)->apply(params, in, out);
 }
 
 IPLint32 IPLCALL iplPanningEffectGetTailSize(IPLPanningEffect effect)

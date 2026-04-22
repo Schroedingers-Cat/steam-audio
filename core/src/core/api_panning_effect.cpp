@@ -75,8 +75,7 @@ void CPanningEffect::reset()
 
 IPLAudioEffectState CPanningEffect::apply(IPLPanningEffectParams* params,
                                           IPLAudioBuffer* in,
-                                          IPLAudioBuffer* out,
-                                          const bool crossfadeCoefficients)
+                                          IPLAudioBuffer* out)
 {
     auto _effect = mHandle.get();
     if (!_effect)
@@ -88,7 +87,7 @@ IPLAudioEffectState CPanningEffect::apply(IPLPanningEffectParams* params,
     PanningEffectParams _params{};
     _params.direction = reinterpret_cast<const Vector3f*>(&params->direction);
 
-    return static_cast<IPLAudioEffectState>(_effect->apply(_params, _in, _out, crossfadeCoefficients));
+    return static_cast<IPLAudioEffectState>(_effect->apply(_params, _in, _out));
 }
 
 IPLint32 CPanningEffect::getTailSize()
